@@ -48,6 +48,7 @@ describe Appsignal::Extension do
       before do
         project_fixture_config.write_to_environment
       end
+      let(:tags) { Appsignal::Utils.data_generate({}) }
 
       it "should have a start and stop method" do
         subject.start
@@ -103,15 +104,15 @@ describe Appsignal::Extension do
       end
 
       it "should have a set_gauge method" do
-        subject.set_gauge("key", 1.0)
+        subject.set_gauge("key", 1.0, tags)
       end
 
       it "should have a increment_counter method" do
-        subject.increment_counter("key", 1)
+        subject.increment_counter("key", 1, tags)
       end
 
       it "should have a add_distribution_value method" do
-        subject.add_distribution_value("key", 1.0)
+        subject.add_distribution_value("key", 1.0, tags)
       end
     end
   end
